@@ -3,10 +3,14 @@ session_start();
 //ROUTER DU SITE
 include './model/modelUser.php';
 include './model/modelManagerUser.php';
+include './model/modelArticles.php';
+include './model/modelAddAnArticle.php';
 include './services/bddServices.php';
 include './services/bddMySQL.php';
 include './controller/controllerHome.php';
 include './controller/controllerNav.php';
+include './controller/controllerArticles.php';
+include './controller/controllerAddAnArticle.php';
 include './utils/functions.php';
 
 
@@ -37,6 +41,21 @@ switch ($path) {
     case $path === "/PHP_MVC/toDoList/signOut":
         $loginForm = new ControllerNav;
         $loginForm->logout();
+        break;
+
+    case $path === "/PHP_MVC/toDoList/articles":
+        $articles = new ControllerArticles;
+        $articles->render();
+        break;
+
+    case $path === "/PHP_MVC/toDoList/addAnArticle":
+        $articles = new ControllerAddArticle;
+        $articles->render();
+        break;
+
+    case $path === "/PHP_MVC/toDoList/addAnArticleAction":
+        $articles = new ControllerAddArticle;
+        $articles->addAnArticleController();
         break;
 
     default :

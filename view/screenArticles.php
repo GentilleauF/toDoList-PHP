@@ -1,0 +1,1 @@
+<p><?= $listedArticles ?></p>

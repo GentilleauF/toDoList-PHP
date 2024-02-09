@@ -1,38 +1,27 @@
 <?php
-
-
-class ControllerHome
-{
+class ControllerHome{
     private ?ControllerNav $controllerNav;
     private ?ModelUser $user;
 
     //Getter and Setter
-    public function getNav()
-    {
+    public function getNav(){
         $this->controllerNav;
     }
-
-    public function setNav(ControllerNav $controllerNav): ControllerHome
-    {
+    public function setNav(ControllerNav $controllerNav): ControllerHome{
         $this->controllerNav = $controllerNav;
         return $this;
     }
-
-    public function getUser()
-    {
+    public function getUser(){
         $this->controllerNav;
     }
-
-    public function setUser(ModelUser $user): ControllerHome
-    {
+    public function setUser(ModelUser $user): ControllerHome{
         $this->user = $user;
         return $this;
     }
 
 
     //METHODS
-    public function log()
-    {
+    public function log(){
         if (isset($_POST['submitLogin'])) {
             if (
                 isset($_POST['login']) and !empty($_POST['login'])
@@ -64,13 +53,13 @@ class ControllerHome
                 } else {
                     echo "erreur 1";
                     $messageConnexion = "Utilisateur ou Mot de Passe incorrect.";
+                    header("Location: ./accueil");
                     return $messageConnexion;
                 }
             }
         }
     }
-    public function sign()
-    {
+    public function sign(){
         if (isset($_POST['submitNewUser'])){
             if (
                 isset($_POST['name']) and !empty($_POST['name'])
@@ -97,11 +86,12 @@ class ControllerHome
 
         }
     }
-    public function render()
-    {
+    public function render(){
         $loginForm='';
         $signInForm='';
         $connectedNavBar= '';
+        $messageConnexion= '';
+
         
         if (!isset($_SESSION['connected'])) {
             $loginForm = '
@@ -115,6 +105,8 @@ class ControllerHome
 
         if (isset($_SESSION['connected'])) {
             $connectedNavBar = '
+                <a href="articles">Les articles</a>
+                <a href="addAnArticle">Ajouter un article</a>
                 <button><a href="signOut">Deconnexion</a></button>';
         }
 
