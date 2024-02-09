@@ -1,0 +1,14 @@
+#Activation du rewrite des URL
+RewriteEngine On
+
+#base du projet (emplacement à partir de la racine du serveur)
+RewriteBase /PHP_MVC/toDoList
+
+#si ce n'est pas un répertoire
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Si ce n'est pas un fichier
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Quel fichier s'occupe du routing
+RewriteRule ^(.+)$ index.php [QSA,L]
